@@ -16,8 +16,9 @@ export const Header = () => {
                 <ul className={s.list}>
                     {navItems.map(item => (
                         <li key={item.to}>
-                            <NavLink to={item.to} className={({isActive}) => `link ${isActive ? s.ativeLink : ''}`}/>
+                            <NavLink to={item.to} className={({isActive}) => `link ${isActive ? s.ativeLink : ''}`}>
                             {item.label}
+                            </NavLink>
                         </li>
                     ))}
                 </ul>
