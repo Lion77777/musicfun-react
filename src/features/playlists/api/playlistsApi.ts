@@ -20,3 +20,5 @@ export const playlistsApi = createApi({
         })
     })
 })
+
+export const { useFetchPlaylistsQuery } = playlistsApi
