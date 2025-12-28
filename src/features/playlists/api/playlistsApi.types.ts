@@ -3,12 +3,20 @@ import type { Images, Tag, User } from "@/common/types"
 
 export type PlaylistsResponse = {
     data: PlaylistData[]
+    meta: PlaylistMeta
 }
 
 export type PlaylistData = {
     id: string
     type: 'playlists'
     attributes: PlaylistAttributes
+}
+
+export type PlaylistMeta = {
+    page: number
+    pageSize: number
+    totalCount: number
+    pagesCount: number
 }
 
 export type PlaylistAttributes = {
