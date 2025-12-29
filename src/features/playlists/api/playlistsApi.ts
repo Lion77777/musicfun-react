@@ -10,7 +10,7 @@ export const playlistsApi = createApi({
         },
         prepareHeaders: (headers) => {
             headers.set('Authorization', `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`)
-            
+
             return headers
         }
     }),
@@ -31,8 +31,16 @@ export const playlistsApi = createApi({
                     body
                 }
             }
+        }),
+        deletePlaylist: build.mutation<void, string>({
+            query: (id) => {
+                return {
+                    method: 'delete',
+                    url: `playlists/${id}`
+                }
+            }
         })
     })
 })
 
-export const { useFetchPlaylistsQuery, useCreatePlaylistMutation } = playlistsApi
+export const { useFetchPlaylistsQuery, useCreatePlaylistMutation, useDeletePlaylistMutation } = playlistsApi
