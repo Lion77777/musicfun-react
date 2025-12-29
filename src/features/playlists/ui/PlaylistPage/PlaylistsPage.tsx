@@ -4,6 +4,7 @@ import { CreatePlaylistForm } from "../CreatePlaylistForm/CreatePlaylistForm"
 import s from './PlaylistsPage.module.css'
 import { useForm, type SubmitHandler } from "react-hook-form"
 import type { PlaylistData, UpdatePlaylistArgs } from "../../api/playlistsApi.types"
+import { PlaylistItem } from "./PlaylistItem/PlaylistItem"
 
 export const PlaylistsPage = () => {
     const { data } = useFetchPlaylistsQuery({ pageSize: 3 })
@@ -63,13 +64,7 @@ export const PlaylistsPage = () => {
                                     <button type="submit">Save</button>
                                     <button type="button" onClick={() => editPlaylistHandler(null)}>Cancel</button>
                                 </form>) : (
-                                    <>
-                                        <div>Title: {playlist.attributes.title}</div>
-                                        <div>Description: {playlist.attributes.description}</div>
-                                        <div>UserName: {playlist.attributes.user.name}</div>
-                                        <button type='button' onClick={() => deletePlaylistHandler(playlist.id)}>Delete</button>
-                                        <button type="button" onClick={() => editPlaylistHandler(playlist)}>Update</button>
-                                    </>
+                                    <PlaylistItem playlist={playlist} deletePlaylistHandler={deletePlaylistHandler} editPlaylistHandler={editPlaylistHandler}/>
                                 )}
                         </div>
                     )
