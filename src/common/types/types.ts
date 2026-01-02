@@ -8,7 +8,7 @@ export type Images = {
 }
 
 export type Cover = {
-    type: 'origin' | 'medium' | 'thumbnail'
+    type: 'original' | 'medium' | 'thumbnail'
     width: number
     height: number
     fileSize: number

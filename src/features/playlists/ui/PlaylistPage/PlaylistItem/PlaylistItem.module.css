@@ -1,0 +1,5 @@
+.cover {
+    height: 240px;
+    object-fit: cover;
+    width: 240px;
+}
