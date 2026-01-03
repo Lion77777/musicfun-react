@@ -3,17 +3,3 @@
     flex-direction: column;
     gap: 30px;
 }
-
-.items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    word-wrap: break-word;
-    width: 240px;
-}

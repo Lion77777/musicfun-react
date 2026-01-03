@@ -8,9 +8,9 @@ import { PlaylistItem } from "./PlaylistItem/PlaylistItem"
 import { EditPlaylistForm } from "./EditPlaylistForm/EditPlaylistForm"
 import { useDebounceValue } from "@/common/hooks"
 import { Pagination } from "@/common/components"
+import { PlaylistsList } from "./PlaylistsList/PlaylistsList"
 
 export const PlaylistsPage = () => {
-    const [playlistId, setPlaylistId] = useState<string | null>(null)
     const [currentPage, setCurrentPage] = useState(1)
     const [pageSize, setPageSize] = useState(2)
     const [search, setSearch] = useState('')
@@ -20,25 +20,6 @@ export const PlaylistsPage = () => {
         pageNumber: currentPage,
         pageSize
     })
-    const { register, handleSubmit, reset } = useForm<UpdatePlaylistArgs>()
-    const [deletePlaylist] = useDeletePlaylistMutation()
-
-    const deletePlaylistHandler = (id: string) => {
-        deletePlaylist(id)
-    }
-
-    const editPlaylistHandler = (playlist: PlaylistData | null) => {
-        if (playlist) {
-            setPlaylistId(playlist.id)
-            reset({
-                title: playlist.attributes.title,
-                description: playlist.attributes.description,
-                tagIds: playlist.attributes.tags.map(tag => tag.id)
-            })
-        } else {
-            setPlaylistId(null)
-        }
-    }
 
     const changePageSizeHandler = (size: number) => {
         setPageSize(size)
@@ -58,30 +39,7 @@ export const PlaylistsPage = () => {
                 placeholder="Search playlist by title"
                 onChange={searchPlaylistHandler}
             />
-            <div className={s.items}>
-                {!data?.data.length && !isLoading && <h2>Playlists not found</h2>}
-                {data?.data.map(playlist => {
-                    const isEditing = playlistId === playlist.id
-
-                    return (
-                        <div key={playlist.id} className={s.item}>
-                            {isEditing ?
-                                <EditPlaylistForm setPlaylistId={setPlaylistId}
-                                    playlistId={playlistId}
-                                    editPlaylist={editPlaylistHandler}
-                                    register={register}
-                                    handleSubmit={handleSubmit}
-                                />
-                                : (
-                                    <PlaylistItem playlist={playlist}
-                                        deletePlaylistHandler={deletePlaylistHandler}
-                                        editPlaylistHandler={editPlaylistHandler}
-                                    />
-                                )}
-                        </div>
-                    )
-                })}
-            </div>
+            <PlaylistsList playlists={data?.data || []} isLoading={isLoading}/>
             <Pagination pagesCount={data?.meta.pagesCount || 1}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
