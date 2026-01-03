@@ -35,7 +35,7 @@ export type PlaylistAttributes = {
 
 export type FetchPlaylistsArgs = {
     pageNumber?: number
-    pageSize: number
+    pageSize?: number
     search?: string
     sortBy?: 'addedAt' | 'likesCount'
     sortDirection?: 'asc' | 'desc'
