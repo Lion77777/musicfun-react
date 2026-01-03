@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    gap: 40px;
+
+    margin: 0 auto;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.pageButton {
+    background-color: white;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px 10px;
+}
+
+.pageButtonActive {
+    background-color: #ececec;
+    cursor: default;
+}
+
+.ellipsis {
+    padding: 4px 10px;
+    color: #888;
+    user-select: none;
+}
