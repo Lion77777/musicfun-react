@@ -1,11 +1,7 @@
 import { useState, type ChangeEvent } from "react"
-import { useDeletePlaylistMutation, useFetchPlaylistsQuery } from "../../api/playlistsApi"
+import { useFetchPlaylistsQuery } from "../../api/playlistsApi"
 import { CreatePlaylistForm } from "../CreatePlaylistForm/CreatePlaylistForm"
 import s from './PlaylistsPage.module.css'
-import { useForm } from "react-hook-form"
-import type { PlaylistData, UpdatePlaylistArgs } from "../../api/playlistsApi.types"
-import { PlaylistItem } from "./PlaylistItem/PlaylistItem"
-import { EditPlaylistForm } from "./EditPlaylistForm/EditPlaylistForm"
 import { useDebounceValue } from "@/common/hooks"
 import { Pagination } from "@/common/components"
 import { PlaylistsList } from "./PlaylistsList/PlaylistsList"
@@ -39,7 +35,7 @@ export const PlaylistsPage = () => {
                 placeholder="Search playlist by title"
                 onChange={searchPlaylistHandler}
             />
-            <PlaylistsList playlists={data?.data || []} isLoading={isLoading}/>
+            <PlaylistsList playlists={data?.data || []} isLoading={isLoading} />
             <Pagination pagesCount={data?.meta.pagesCount || 1}
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
