@@ -2,17 +2,21 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseApi = createApi({
     reducerPath: 'baseApi',
-    baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.VITE_BASE_URL,
-        headers: {
-            'API-KEY': import.meta.env.VITE_API_KEY
-        },
-        prepareHeaders: (headers) => {
-            headers.set('Authorization', `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`)
+    baseQuery: async (args, api, extraoptions) => {
+        await new Promise(res => setTimeout(res, 2000))
+        
+        return fetchBaseQuery({
+            baseUrl: import.meta.env.VITE_BASE_URL,
+            headers: {
+                'API-KEY': import.meta.env.VITE_API_KEY
+            },
+            prepareHeaders: (headers) => {
+                headers.set('Authorization', `Bearer ${import.meta.env.VITE_ACCESS_TOKEN}`)
 
-            return headers
-        }
-    }),
+                return headers
+            }
+        })(args, api, extraoptions)
+    },
     tagTypes: ['Playlists'],
     endpoints: () => ({})
 })
